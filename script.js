@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxL6OBodRQ0t_Ag3xXikue2RfTOi-UxYbayEwZ9fIXeVmHgTsCWc9JHXPx0Ns5Rijf4/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz2jy5Y0IMTh10KdqfgGsDJbyV5B6tdakIAQGUUP8VLIXe1dqbdOAHitmVsr5RPpcMZxQ/exec';
 
 // التحقق من تسجيل الدخول
 if (location.pathname.endsWith('dashboard.html')) {
