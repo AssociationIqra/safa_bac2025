@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل الدخول</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+  <h1 class="main-title">تسجيلات بكالوريا 2025</h1>
+  <h2 class="sub-title">جمعية إقرأ للثقافة و التنمية العلمية - بلدة عمر - تقرت</h2>
+</header>
+<div class="container">
+  <h2>تسجيل الدخول</h2>
+  <input type="text" id="loginUser" placeholder="اسم المستخدم">
+  <input type="password" id="loginPass" placeholder="كلمة المرور">
+  <button id="btnLogin" class="green">دخول</button>
+  <p>ليس لديك حساب؟ <a href="register.html">سجّل الآن</a></p>
+  <p id="loginMsg"></p>
+</div>
+<script>
+  document.getElementById("btnLogin").onclick = function () {
+    const user = document.getElementById("loginUser").value.trim();
+    const pass = document.getElementById("loginPass").value.trim();
+    const msg = document.getElementById("loginMsg");
+
+    if (!user || !pass) {
+      msg.textContent = "يرجى إدخال اسم المستخدم وكلمة المرور.";
+      msg.style.color = "red";
+      return;
+    }
+
+    // جلب المستخدمين من localStorage أو قائمة افتراضية
+    let users = JSON.parse(localStorage.getItem("users")) || [
+      { username: "admin", password: "1234" },
+      { username: "user1", password: "pass1" },
+      { username: "brahim", password: "secret" }
+    ];
+
+    const match = users.find(u => u.username === user && u.password === pass);
+
+    if (match) {
+      localStorage.setItem("loggedIn", "true");
+      window.location.href = "dashboard.html";
+    } else {
+      msg.textContent = "❌ اسم المستخدم أو كلمة المرور غير صحيحة.";
+      msg.style.color = "red";
+    }
+  };
+</script>
+<script src="script.js"></script>
+</body>
+</html>

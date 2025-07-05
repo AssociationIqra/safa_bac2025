@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>إنشاء حساب جديد</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+  <h1 class="main-title">تسجيلات بكالوريا 2025</h1>
+  <h2 class="sub-title">جمعية إقرأ للثقافة و التنمية العلمية - بلدة عمر - تقرت</h2>
+</header>
+<div class="container">
+  <h2>إنشاء حساب</h2>
+  <input type="text" id="regUsername" placeholder="اسم المستخدم">
+  <input type="password" id="regPass" placeholder="كلمة المرور">
+  <button id="btnRegister" class="warn yellow">سجّل</button>
+  <p>لديك حساب؟ <a href="index.html">تسجيل الدخول</a></p>
+  <p id="regMsg"></p>
+</div>
+<script>
+  document.getElementById("btnRegister").onclick = function () {
+    const username = document.getElementById("regUsername").value.trim();
+    const password = document.getElementById("regPass").value.trim();
+    const msg = document.getElementById("regMsg");
+
+    if (!username || !password) {
+      msg.textContent = "يرجى إدخال اسم المستخدم وكلمة المرور.";
+      msg.style.color = "red";
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.find(u => u.username === username)) {
+      msg.textContent = "⚠️ اسم المستخدم موجود مسبقًا.";
+      msg.style.color = "red";
+      return;
+    }
+
+    users.push({ username: username, password: password });
+    localStorage.setItem("users", JSON.stringify(users));
+    msg.textContent = "✅ تم إنشاء الحساب بنجاح! سيتم تحويلك...";
+    msg.style.color = "green";
+
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2000);
+  };
+</script>
+<script src="script.js"></script>
+</body>
+</html>
